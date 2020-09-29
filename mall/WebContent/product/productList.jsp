@@ -75,137 +75,152 @@
 		CategoryDao categoryDao = new CategoryDao();
 		ArrayList<Category> categoryList = categoryDao.selectCategoryList();
 	%>
-	
 	<div class="container">
 		<!-- 카테고리 선택 -->
-		<div class="align-center">	
-			<table class="table table-borderless">
-				<tr>
-					<td><a style="width:105%" class="btn btn-light btn-outline-secondary" href="<%=request.getContextPath()%>/product/productList.jsp?&categoryId=-1">전체</a></td>
-					<%
-						for(int i = 0 ; i < 6 ; i++){
-					%>
-							<td><a style="width:105%" class="btn btn-light btn-outline-secondary" href="<%=request.getContextPath()%>/product/productList.jsp?&categoryId=<%=categoryList.get(i).getCategoryId()%>"><%=categoryList.get(i).getCategoryName() %></a></td>
-					<%
-						}
-					%>
-					<td>
-						<select class="btn btn-primary" name="categoryId" onChange="window.open(value,'_self')">	
-							<option>더보기</option>						
+		<div class="row">
+			<div class="align-center col-sm-2">	
+				<table class="table table-borderless bg-light">
+					<thead class="thead-dark">
+						<tr>
+							<th style="height:80px; width:100px" class="align-center"><h4>카테고리</h4></th>
+						</tr>
+					</thead>
+					<tr>
+						<!-- 전체 -->
+						<td><a style="width:100%" class="btn btn-light btn-outline-secondary" href="<%=request.getContextPath()%>/product/productList.jsp?&categoryId=-1">전체</a></td>
+						
+						<!-- 카테고리 6개 -->
 						<%
-							System.out.println(categoryList.size() + "<--size");
-							for(int i = 6; i < categoryList.size(); i ++){
-								System.out.println(categoryList.get(i).getCategoryId());
+							for(int i = 0 ; i < 6 ; i++){
 						%>
-								<option value="<%=request.getContextPath()%>/product/productList.jsp?&categoryId=<%=categoryList.get(i).getCategoryId() %>"><%=categoryList.get(i).getCategoryName() %></option>
+							<tr>
+								<td><a style="width:100%" class="btn btn-light btn-outline-secondary" href="<%=request.getContextPath()%>/product/productList.jsp?&categoryId=<%=categoryList.get(i).getCategoryId()%>"><%=categoryList.get(i).getCategoryName() %></a></td>		
+							</tr>
 						<%
 							}
 						%>
-						</select>
-					</td>
-				</tr>
-			</table>
-		</div>
-		
-	
-		<!-- 상품 리스트 -->
-		<table class="table">
-			<thead class="thead-light">
-				<!-- 카테고리 이름 -->
-				<tr>
-					<%
-						if(categoryId == -1 && searchProductName.equals("")){
-					%>
-							<th colspan="3"><h5>상품 - 전체</h5></th>
-					<%
-						}else if(categoryId != -1 && searchProductName.equals("")){
-					%>
-							<th colspan="3"><h5>상품 - <%=categoryDao.getCategoryNameByCategoryId(categoryId) %></h5></th>
-					<% 
-						}else {
-					%>
-							<th colspan="3"><h5>상품 - 검색결과</h5></th>
-					<%
-						}
-					%>
-				</tr>
-			</thead>
-			<tbody>
-				<!-- 상품 목록 -->
-				<%
-					for(Product p : productList){
-				%>
-				<tr>
-					
-					<td style="width:150px" rowspan="3">
-						<a class="color-black" href="<%=request.getContextPath()%>/product/productOne.jsp?productId=<%=p.getProductId()%>">
-							<img width="150px" src="/mall-admin/images/<%=p.getProductPic()%>">
-						</a>
-					</td>	
-					<td rowspan="2">
-						<h3>
-							<a class="color-black" href="<%=request.getContextPath()%>/product/productOne.jsp?productId=<%=p.getProductId()%>"><%=p.getProductName() %></a>
+						<td>
+						<!-- 카테고리 더보기 -->
+							<select class="btn btn-outline-primary" name="categoryId" onChange="window.open(value,'_self')">	
+								<option>더보기</option>						
 							<%
-								// 품절일 경우 품절 뱃지 추가
-								if(p.getProductSoldout().equals("Y")){
+								System.out.println(categoryList.size() + "<--size");
+								for(int i = 6; i < categoryList.size(); i ++){
+									System.out.println(categoryList.get(i).getCategoryId());
 							%>
-								<span class="badge badge-danger">품절</span>
+									<option value="<%=request.getContextPath()%>/product/productList.jsp?&categoryId=<%=categoryList.get(i).getCategoryId() %>"><%=categoryList.get(i).getCategoryName() %></option>
 							<%
 								}
 							%>
-							<br>
-						</h3>
-						<h5><%=p.getProductPrice() %>원</h5>
-					</td>	
-					<td rowspan="3"></td>			
-				</tr>
-				<tr>
-				</tr>
-				<tr>
-					<td>무료배송</td>			
-				</tr>
-				<%
-					}
-				%>
-			</tbody>
-		</table>
+							</select>
+						</td>
+					</tr>
+				</table>
+			</div>
+			
+			<div class="col-sm-1">	
+			</div>
 		
-		<!-- 페이징 -->
-		<ul class="pagination">
-			<%
-				// 현재 페이지가 1페이지 보다 클 시
-				if(currentPage > 1){
-			%>
-					<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/product/productList.jsp?searchProductName=<%=searchProductName %>&categoryId=<%=categoryId%>&currentPage=1">처음</a></li>
-					<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/product/productList.jsp?searchProductName=<%=searchProductName %>&categoryId=<%=categoryId%>&currentPage=<%=currentPage-1 %>">이전</a></li>
-			<%
-				// 현재 페이지가 1페이지 일 시
-				}else{
-			%>
-					<li class="page-item disabled"><a class="page-link" href="<%=request.getContextPath() %>/product/productList.jsp?searchProductName=<%=searchProductName %>&categoryId=<%=categoryId%>&currentPage=1">처음</a></li>
-					<li class="page-item disabled"><a class="page-link" href="<%=request.getContextPath() %>/product/productList.jsp?searchProductName=<%=searchProductName %>&categoryId=<%=categoryId%>&currentPage=<%=currentPage-1 %>">이전</a></li>
-			<%
-				}// 현재 페이지
-			%>
-					<li class="page-item"><a class="page-link"><%=currentPage %></a></li>
-			<%
-				// 현재 페이지가 마지막 페이지보다 작을 시
-				if(currentPage < endPage){
-			%>
-					<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/product/productList.jsp?searchProductName=<%=searchProductName %>&categoryId=<%=categoryId%>&currentPage=<%=currentPage+1 %>">다음</a></li>
-					<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/product/productList.jsp?searchProductName=<%=searchProductName %>&categoryId=<%=categoryId%>&currentPage=<%=endPage %>">맨끝</a></li>
-			<%
-				// 현재 페이지가 마지막 페이지 일 시
-				}else{
-			%>
-					<li class="page-item disabled"><a class="page-link" href="<%=request.getContextPath() %>/product/productList.jsp?searchProductName=<%=searchProductName %>&categoryId=<%=categoryId%>&currentPage=<%=currentPage+1 %>">다음</a></li>
-					<li class="page-item disabled"><a class="page-link" href="<%=request.getContextPath() %>/product/productList.jsp?searchProductName=<%=searchProductName %>&categoryId=<%=categoryId%>&currentPage=<%=endPage %>">맨끝</a></li>
-			<%
-				}
-			%>	
-		</ul>
+			<!-- 상품 리스트 -->
+			<div class="col-sm-9">
+				<table class="table">
+					<thead class="thead-light">
+						<!-- 카테고리 이름 -->
+						<tr>
+							<%
+								if(categoryId == -1 && searchProductName.equals("")){
+							%>
+									<th colspan="3"><h5>상품 - 전체</h5></th>
+							<%
+								}else if(categoryId != -1 && searchProductName.equals("")){
+							%>
+									<th colspan="3"><h5>상품 - <%=categoryDao.getCategoryNameByCategoryId(categoryId) %></h5></th>
+							<% 
+								}else {
+							%>
+									<th colspan="3"><h5>상품 - 검색결과</h5></th>
+							<%
+								}
+							%>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- 상품 목록 -->
+						<%
+							for(Product p : productList){
+						%>
+						<tr>
+							
+							<td style="width:150px" rowspan="3">
+								<a class="color-black" href="<%=request.getContextPath()%>/product/productOne.jsp?productId=<%=p.getProductId()%>">
+									<img width="150px" src="/mall-admin/images/<%=p.getProductPic()%>">
+								</a>
+							</td>	
+							<td rowspan="2">
+								<h3>
+									<a class="color-black" href="<%=request.getContextPath()%>/product/productOne.jsp?productId=<%=p.getProductId()%>"><%=p.getProductName() %></a>
+									<%
+										// 품절일 경우 품절 뱃지 추가
+										if(p.getProductSoldout().equals("Y")){
+									%>
+										<span class="badge badge-danger">품절</span>
+									<%
+										}
+									%>
+									<br>
+								</h3>
+								<h5><%=p.getProductPrice() %>원</h5>
+							</td>	
+							<td rowspan="3"></td>			
+						</tr>
+						<tr>
+						</tr>
+						<tr>
+							<td>무료배송</td>			
+						</tr>
+						<%
+							}
+						%>
+					</tbody>
+				</table>
+				
+				<!-- 페이징 -->
+				<ul class="pagination">
+					<%
+						// 현재 페이지가 1페이지 보다 클 시
+						if(currentPage > 1){
+					%>
+							<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/product/productList.jsp?searchProductName=<%=searchProductName %>&categoryId=<%=categoryId%>&currentPage=1">처음</a></li>
+							<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/product/productList.jsp?searchProductName=<%=searchProductName %>&categoryId=<%=categoryId%>&currentPage=<%=currentPage-1 %>">이전</a></li>
+					<%
+						// 현재 페이지가 1페이지 일 시
+						}else{
+					%>
+							<li class="page-item disabled"><a class="page-link" href="<%=request.getContextPath() %>/product/productList.jsp?searchProductName=<%=searchProductName %>&categoryId=<%=categoryId%>&currentPage=1">처음</a></li>
+							<li class="page-item disabled"><a class="page-link" href="<%=request.getContextPath() %>/product/productList.jsp?searchProductName=<%=searchProductName %>&categoryId=<%=categoryId%>&currentPage=<%=currentPage-1 %>">이전</a></li>
+					<%
+						}// 현재 페이지
+					%>
+							<li class="page-item"><a class="page-link"><%=currentPage %></a></li>
+					<%
+						// 현재 페이지가 마지막 페이지보다 작을 시
+						if(currentPage < endPage){
+					%>
+							<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/product/productList.jsp?searchProductName=<%=searchProductName %>&categoryId=<%=categoryId%>&currentPage=<%=currentPage+1 %>">다음</a></li>
+							<li class="page-item"><a class="page-link" href="<%=request.getContextPath() %>/product/productList.jsp?searchProductName=<%=searchProductName %>&categoryId=<%=categoryId%>&currentPage=<%=endPage %>">맨끝</a></li>
+					<%
+						// 현재 페이지가 마지막 페이지 일 시
+						}else{
+					%>
+							<li class="page-item disabled"><a class="page-link" href="<%=request.getContextPath() %>/product/productList.jsp?searchProductName=<%=searchProductName %>&categoryId=<%=categoryId%>&currentPage=<%=currentPage+1 %>">다음</a></li>
+							<li class="page-item disabled"><a class="page-link" href="<%=request.getContextPath() %>/product/productList.jsp?searchProductName=<%=searchProductName %>&categoryId=<%=categoryId%>&currentPage=<%=endPage %>">맨끝</a></li>
+					<%
+						}
+					%>	
+				</ul>
+			</div>
+		</div>
 	</div>
-	
 	<!-- 최하단 -->
 	<div>
 		<jsp:include page="/inc/bottomMenu.jsp"></jsp:include>
