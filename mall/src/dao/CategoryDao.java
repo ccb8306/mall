@@ -6,7 +6,7 @@ import vo.Category;
 import java.sql.*;
 
 public class CategoryDao {
-	// 메인(index) 카테고리 목록 출력 (페이지 o)
+	// 메인 카테고리 목록 출력 (페이징 o)
 	public ArrayList<Category> selectCategoryList(int currentPage, int rowPage) throws Exception {
 		ArrayList<Category> list = new ArrayList<Category>();
 		DBUtil dbUtil = new DBUtil();
@@ -30,7 +30,7 @@ public class CategoryDao {
 		return list;
 	}
 
-	// 카테고리 목록 출력 (페이지 o / 인기 카테고리)
+	// 카테고리 목록 출력 (페이징 o / 인기 카테고리 TOP 4)
 	public ArrayList<Category> selectCategoryListbyCkList() throws Exception {
 		ArrayList<Category> list = new ArrayList<Category>();
 		DBUtil dbUtil = new DBUtil();
@@ -52,7 +52,7 @@ public class CategoryDao {
 		return list;
 	}
 	
-	// 추천 상품용 카테고리 목록 출력 
+	// 추천 상품용 카테고리 목록 출력 (페이징x)
 	public ArrayList<Category> selectCategoryList() throws Exception {
 		ArrayList<Category> list = new ArrayList<Category>();
 		DBUtil dbUtil = new DBUtil();

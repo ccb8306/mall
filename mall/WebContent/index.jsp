@@ -247,10 +247,20 @@
 				%>
 						<td>
 							<div class="card" style="width:350px">
-								<img class="card-img-top" height="300px" src="/mall-admin/images/<%=p.getProductPic() %>" alt="Card image">										
+								<a href="<%=request.getContextPath() %>/product/productOne.jsp?productId=<%=p.getProductId() %>">
+									<img class="card-img-top" height="300px" src="/mall-admin/images/<%=p.getProductPic() %>" alt="Card image">	
+								</a>									
 								<div class="card-body">
 									<h4 class="card-title">
 										<a href="<%=request.getContextPath() %>/product/productOne.jsp?productId=<%=p.getProductId() %>" class="color-black"><%=p.getProductName() %></a>
+										<%
+											// 상품이 풀절일경우
+											if(p.getProductSoldout().equals("Y")){
+										%>
+												<span class="btn btn-danger">품절</span>
+										<%
+											}
+										%>
 									</h4>
 									<h5 class="card-title align-right"><%=p.getProductPrice() %>원</h5>
 								</div>
@@ -297,7 +307,7 @@
 		</div>
 	</div>
 		
-	<!-- 최하단 -->
+	<!-- 하단 메뉴 -->
 	<div>
 		<jsp:include page="/inc/bottomMenu.jsp"></jsp:include>
 	</div>

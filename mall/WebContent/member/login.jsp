@@ -52,13 +52,13 @@
 					<td style="width:15%" class="align-center" >
 						<i class='fas fa-user-alt' style='font-size:36px; color:gray'></i>
 						 </td>
-					<td><input type="text" name="memberEmail" class="form-control"  placeholder="Email"></td>
+					<td><input type="text" name="memberEmail" class="form-control"  placeholder="Email" value="user@naver.com"></td>
 				</tr>
 				<tr>
 					<td style="width:15%" class="align-center" >
 						<i class='fas fa-key' style='font-size:36px; color:gray'></i> 
 					</td>
-					<td><input type="password" name="memberPw" class="form-control"  placeholder="****"></td>
+					<td><input type="password" name="memberPw" class="form-control"  placeholder="****" value="1234"></td>
 				</tr>
 			</tbody>
 		</table>

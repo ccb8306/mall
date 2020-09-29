@@ -15,7 +15,7 @@ public class ProductDao {
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();	
 		
-		String sql = "select product_id, product_name, product_price, product_pic from product where product_soldout='N' limit ?, ?";
+		String sql = "select product_id, product_name, product_price, product_pic, product_soldout from product limit ?, ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, (currentPage - 1) * rowPage);
 		stmt.setInt(2, rowPage);
@@ -27,6 +27,7 @@ public class ProductDao {
 			p.setProductName(rs.getString("product_name"));
 			p.setProductPrice(rs.getInt("product_price"));
 			p.setProductPic(rs.getString("product_pic"));
+			p.setProductSoldout(rs.getString("product_soldout"));
 			list.add(p);
 		}
 
@@ -40,7 +41,7 @@ public class ProductDao {
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();	
 		
-		String sql = "select product_id, product_name, product_price, product_pic from product where product_soldout='N' AND category_id=? limit ?, ?";
+		String sql = "select product_id, product_name, product_price, product_pic, product_soldout from product where category_id=? limit ?, ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, categoryId);
 		stmt.setInt(2, (currentPage-1)*rowPage);
@@ -54,6 +55,7 @@ public class ProductDao {
 			p.setProductName(rs.getString("product_name"));
 			p.setProductPrice(rs.getInt("product_price"));
 			p.setProductPic(rs.getString("product_pic"));
+			p.setProductSoldout(rs.getString("product_soldout"));
 			list.add(p);
 		}
 
@@ -69,7 +71,7 @@ public class ProductDao {
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();	
 
-		String sql = "select product_id, product_name, product_price, product_pic from product where product_soldout='N' AND product_name like ? limit ?, ?";
+		String sql = "select product_id, product_name, product_price, product_pic, product_soldout from product where product_name like ? limit ?, ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, "%" + productName + "%");
 		stmt.setInt(2, (currentPage-1)*rowPage);
@@ -83,6 +85,7 @@ public class ProductDao {
 			p.setProductName(rs.getString("product_name"));
 			p.setProductPrice(rs.getInt("product_price"));
 			p.setProductPic(rs.getString("product_pic"));
+			p.setProductSoldout(rs.getString("product_soldout"));
 			list.add(p);
 		}
 
@@ -98,7 +101,7 @@ public class ProductDao {
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();	
 		
-		String sql = "select product_id, product_name, product_price, product_pic from product where product_soldout='N' and category_id=? limit 0,6";
+		String sql = "select product_id, product_name, product_price, product_pic, product_soldout from product where category_id=? limit 0,6";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, categoryId);
 		ResultSet rs = stmt.executeQuery();
@@ -109,6 +112,7 @@ public class ProductDao {
 			p.setProductName(rs.getString("product_name"));
 			p.setProductPrice(rs.getInt("product_price"));
 			p.setProductPic(rs.getString("product_pic"));
+			p.setProductSoldout(rs.getString("product_soldout"));
 			list.add(p);
 		}
 
@@ -123,7 +127,7 @@ public class ProductDao {
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();	
 		
-		String sql = "select product_id, product_name, product_price, product_pic from product where product_soldout='N' limit 0,6";
+		String sql = "select product_id, product_name, product_price, product_pic, product_soldout from product limit 0,6";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		ResultSet rs = stmt.executeQuery();
 		
@@ -133,6 +137,7 @@ public class ProductDao {
 			p.setProductName(rs.getString("product_name"));
 			p.setProductPrice(rs.getInt("product_price"));
 			p.setProductPic(rs.getString("product_pic"));
+			p.setProductSoldout(rs.getString("product_soldout"));
 			list.add(p);
 		}
 
@@ -172,7 +177,7 @@ public class ProductDao {
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();	
 		
-		String sql = "select count(*) from product where product_soldout='N'";
+		String sql = "select count(*) from product";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		ResultSet rs = stmt.executeQuery();
 		
@@ -196,7 +201,7 @@ public class ProductDao {
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();	
 		
-		String sql = "select count(*) from product where product_soldout='N' and category_id=?";
+		String sql = "select count(*) from product where category_id=?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, categoryId);
 		ResultSet rs = stmt.executeQuery();
@@ -221,7 +226,7 @@ public class ProductDao {
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();	
 		
-		String sql = "select count(*) from product where product_soldout='N' and product_name like ?";
+		String sql = "select count(*) from product where product_name like ?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setString(1, "%" + productName + "%");
 		ResultSet rs = stmt.executeQuery();

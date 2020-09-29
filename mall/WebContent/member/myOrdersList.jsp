@@ -80,7 +80,7 @@
 					%>
 						<tr>
 							<td><del><%=oap.getOrders().getOrdersId() %></del></td>
-							<td><img src="/mall-admin/images/<%=oap.getProduct().getProductPic()%>" width="70px" height="70px"></td>
+							<td><a class="color-black" href="<%=request.getContextPath()%>/product/productOne.jsp?productId=<%=oap.getProduct().getProductId()%>"><img src="/mall-admin/images/<%=oap.getProduct().getProductPic()%>" width="70px" height="70px"></a></td>
 							<td><del><a class="color-black" href="<%=request.getContextPath()%>/product/productOne.jsp?productId=<%=oap.getProduct().getProductId()%>"><%=oap.getProduct().getProductName() %></a></del></td>
 							<td><del><%=oap.getOrders().getOrdersAmount() %></del></td>
 							<td><del><%=oap.getOrders().getOrdersPrice() %>원</del></td>
@@ -95,7 +95,7 @@
 					%>
 						<tr>
 							<td><%=oap.getOrders().getOrdersId() %></td>
-							<td><img src="/mall-admin/images/<%=oap.getProduct().getProductPic()%>" width="70px" height="70px"></td>
+							<td><a class="color-black" href="<%=request.getContextPath()%>/product/productOne.jsp?productId=<%=oap.getProduct().getProductId()%>"><img src="/mall-admin/images/<%=oap.getProduct().getProductPic()%>" width="70px" height="70px"></a></td>
 							<td><a class="color-black" href="<%=request.getContextPath()%>/product/productOne.jsp?productId=<%=oap.getProduct().getProductId()%>"><%=oap.getProduct().getProductName() %></a></td>
 							<td><%=oap.getOrders().getOrdersAmount() %></td>
 							<td><%=oap.getOrders().getOrdersPrice() %>원</td>

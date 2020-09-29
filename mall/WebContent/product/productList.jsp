@@ -73,9 +73,42 @@
 		
 		// 카테고리 Dao
 		CategoryDao categoryDao = new CategoryDao();
+		ArrayList<Category> categoryList = categoryDao.selectCategoryList();
 	%>
-	<!-- 상품 리스트 -->
+	
 	<div class="container">
+		<!-- 카테고리 선택 -->
+		<div class="align-center">	
+			<table class="table table-borderless">
+				<tr>
+					<td><a style="width:105%" class="btn btn-light btn-outline-secondary" href="<%=request.getContextPath()%>/product/productList.jsp?&categoryId=-1">전체</a></td>
+					<%
+						for(int i = 0 ; i < 6 ; i++){
+					%>
+							<td><a style="width:105%" class="btn btn-light btn-outline-secondary" href="<%=request.getContextPath()%>/product/productList.jsp?&categoryId=<%=categoryList.get(i).getCategoryId()%>"><%=categoryList.get(i).getCategoryName() %></a></td>
+					<%
+						}
+					%>
+					<td>
+						<select class="btn btn-primary" name="categoryId" onChange="window.open(value,'_self')">	
+							<option>더보기</option>						
+						<%
+							System.out.println(categoryList.size() + "<--size");
+							for(int i = 6; i < categoryList.size(); i ++){
+								System.out.println(categoryList.get(i).getCategoryId());
+						%>
+								<option value="<%=request.getContextPath()%>/product/productList.jsp?&categoryId=<%=categoryList.get(i).getCategoryId() %>"><%=categoryList.get(i).getCategoryName() %></option>
+						<%
+							}
+						%>
+						</select>
+					</td>
+				</tr>
+			</table>
+		</div>
+		
+	
+		<!-- 상품 리스트 -->
 		<table class="table">
 			<thead class="thead-light">
 				<!-- 카테고리 이름 -->
@@ -103,9 +136,25 @@
 					for(Product p : productList){
 				%>
 				<tr>
-					<td style="width:150px" rowspan="3"><img width="150px" src="/mall-admin/images/<%=p.getProductPic()%>"></td>	
+					
+					<td style="width:150px" rowspan="3">
+						<a class="color-black" href="<%=request.getContextPath()%>/product/productOne.jsp?productId=<%=p.getProductId()%>">
+							<img width="150px" src="/mall-admin/images/<%=p.getProductPic()%>">
+						</a>
+					</td>	
 					<td rowspan="2">
-						<h3><a class="color-black" href="<%=request.getContextPath()%>/product/productOne.jsp?productId=<%=p.getProductId()%>"><%=p.getProductName() %></a><br></h3>
+						<h3>
+							<a class="color-black" href="<%=request.getContextPath()%>/product/productOne.jsp?productId=<%=p.getProductId()%>"><%=p.getProductName() %></a>
+							<%
+								// 품절일 경우 품절 뱃지 추가
+								if(p.getProductSoldout().equals("Y")){
+							%>
+								<span class="badge badge-danger">품절</span>
+							<%
+								}
+							%>
+							<br>
+						</h3>
 						<h5><%=p.getProductPrice() %>원</h5>
 					</td>	
 					<td rowspan="3"></td>			

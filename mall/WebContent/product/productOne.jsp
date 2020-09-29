@@ -60,43 +60,55 @@
 					<tr>
 						<td>무료배송 <br> 무이자 할부</td>
 					</tr>
-					<tr>
-						<td>
-							<div class="input-group">
-								<!-- 수량 선택시 총 금액 변동 -->
-								<h5>수량 선택</h5>  
-								<select style="width:60%" class="form-control" id="sel1" name="amount" onChange="window.open(value,'_self')">
-									<%
-										for(int i = 1; i < 11 ; i ++){
-									%>
-											<option
-											<%
-												if(amount == i) {
-											%>
-												selected="selected"
-											<%
-												}
-											%>
-											 value="<%=request.getContextPath() %>/product/productOne.jsp?productId=<%=productId%>&amount=<%=i%>"><%=i %></option>
-									<%
-										}
-									%>
-								</select>
-								<input type="hidden" name="ordersAmount" value="<%=amount%>">
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<h3>총 금액 :  <%=amount * p.getProductPrice() %>원</h3>
-						</td>
-					</tr>
-					<tr>
-						<td><h4>배송지 : <input type="text" class="" name="ordersAddr"></h4></td>
-					</tr>
-					<tr>
-						<td><button type="submit" class="btn btn-outline-primary btn-block">구매하기</button></td>
-					</tr>
+					<%
+						// 품절이 아닐경우 (판매중)
+						if(p.getProductSoldout().equals("N")){
+					%>
+						<tr>
+							<td>
+								<div class="input-group">
+									<!-- 수량 선택시 총 금액 변동 -->
+									<h5>수량 선택</h5>  
+									<select style="width:60%" class="form-control" id="sel1" name="amount" onChange="window.open(value,'_self')">
+										<%
+											for(int i = 1; i < 11 ; i ++){
+										%>
+												<option
+												<%
+													if(amount == i) {
+												%>
+													selected="selected"
+												<%
+													}
+												%>
+												 value="<%=request.getContextPath() %>/product/productOne.jsp?productId=<%=productId%>&amount=<%=i%>"><%=i %></option>
+										<%
+											}
+										%>
+									</select>
+									<input type="hidden" name="ordersAmount" value="<%=amount%>">
+								</div>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h3>총 금액 :  <%=amount * p.getProductPrice() %>원</h3>
+							</td>
+						</tr>
+						<tr>
+							<td><h4>배송지 : <input type="text" class="" name="ordersAddr"></h4></td>
+						</tr>
+						<tr>
+							<td><button type="submit" class="btn btn-outline-primary btn-block">구매하기</button></td>
+						</tr>
+					<%
+						// 품절일 경우
+						}else{
+					%>
+						<tr><td rowspan="2"><button type="button" disabled class="btn btn-secondary btn-block">품절</button></td></tr>
+					<%
+						}
+					%>
 				</table>
 			</form>
 		</div>
