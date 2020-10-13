@@ -88,7 +88,7 @@
 					<tr>
 						<!-- 전체 -->
 						<td><a style="width:100%" class="btn btn-light btn-outline-secondary" href="<%=request.getContextPath()%>/product/productList.jsp?&categoryId=-1">전체</a></td>
-						
+					</tr>	
 						<!-- 카테고리 6개 -->
 						<%
 							for(int i = 0 ; i < 6 ; i++){
@@ -99,6 +99,7 @@
 						<%
 							}
 						%>
+					<tr>
 						<td>
 						<!-- 카테고리 더보기 -->
 							<select class="btn btn-outline-primary" name="categoryId" onChange="window.open(value,'_self')">	

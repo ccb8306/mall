@@ -63,8 +63,8 @@
 				</tr>
 				<tr>
 					<th>주문번호</th>
-					<th colspan="2">상품이름</th>
-					<th>주문상품</th>
+					<th colspan="2">주문상품</th>
+					<th>주문개수</th>
 					<th>결제금액</th>
 					<th>배송지</th>
 					<th>주문상태</th>
@@ -73,41 +73,41 @@
 				</tr>
 			</thead>
 			<tbody>
-					<%
-						for(OrdersAndProduct oap : oapList){
-							// 주문 취소된 상품 일 시
-							if(oap.getOrders().getOrdersState().equals("주문취소")){
-					%>
-						<tr>
-							<td><del><%=oap.getOrders().getOrdersId() %></del></td>
-							<td><a class="color-black" href="<%=request.getContextPath()%>/product/productOne.jsp?productId=<%=oap.getProduct().getProductId()%>"><img src="/mall-admin/images/<%=oap.getProduct().getProductPic()%>" width="70px" height="70px"></a></td>
-							<td><del><a class="color-black" href="<%=request.getContextPath()%>/product/productOne.jsp?productId=<%=oap.getProduct().getProductId()%>"><%=oap.getProduct().getProductName() %></a></del></td>
-							<td><del><%=oap.getOrders().getOrdersAmount() %></del></td>
-							<td><del><%=oap.getOrders().getOrdersPrice() %>원</del></td>
-							<td><del><%=oap.getOrders().getOrdersAddr() %></del></td>
-							<td style="color:red"><%=oap.getOrders().getOrdersState() %></td>
-							<td><del><%=oap.getOrders().getOrdersDate() %></del></td>
-							<td>-</td>
-						</tr>
-					<%
-							// 그 외
-							}else{
-					%>
-						<tr>
-							<td><%=oap.getOrders().getOrdersId() %></td>
-							<td><a class="color-black" href="<%=request.getContextPath()%>/product/productOne.jsp?productId=<%=oap.getProduct().getProductId()%>"><img src="/mall-admin/images/<%=oap.getProduct().getProductPic()%>" width="70px" height="70px"></a></td>
-							<td><a class="color-black" href="<%=request.getContextPath()%>/product/productOne.jsp?productId=<%=oap.getProduct().getProductId()%>"><%=oap.getProduct().getProductName() %></a></td>
-							<td><%=oap.getOrders().getOrdersAmount() %></td>
-							<td><%=oap.getOrders().getOrdersPrice() %>원</td>
-							<td><%=oap.getOrders().getOrdersAddr() %></td>
-							<td><%=oap.getOrders().getOrdersState() %></td>
-							<td><%=oap.getOrders().getOrdersDate() %></td>
-							<td><a href="<%=request.getContextPath() %>/orders/modifyOrdersStateAction.jsp?ordersId=<%=oap.getOrders().getOrdersId() %>">주문취소</a></td>
-						</tr>
-					<%
-							}
+				<%
+					for(OrdersAndProduct oap : oapList){
+						// 주문 취소된 상품 일 시
+						if(oap.getOrders().getOrdersState().equals("주문취소")){
+				%>
+					<tr>
+						<td><del><%=oap.getOrders().getOrdersId() %></del></td>
+						<td><a class="color-black" href="<%=request.getContextPath()%>/product/productOne.jsp?productId=<%=oap.getProduct().getProductId()%>"><img src="/mall-admin/images/<%=oap.getProduct().getProductPic()%>" width="70px" height="70px"></a></td>
+						<td><del><a class="color-black" href="<%=request.getContextPath()%>/product/productOne.jsp?productId=<%=oap.getProduct().getProductId()%>"><%=oap.getProduct().getProductName() %></a></del></td>
+						<td><del><%=oap.getOrders().getOrdersAmount() %></del></td>
+						<td><del><%=oap.getOrders().getOrdersPrice() %>원</del></td>
+						<td><del><%=oap.getOrders().getOrdersAddr() %></del></td>
+						<td style="color:red"><%=oap.getOrders().getOrdersState() %></td>
+						<td><del><%=oap.getOrders().getOrdersDate() %></del></td>
+						<td>-</td>
+					</tr>
+				<%
+						// 그 외
+						}else{
+				%>
+					<tr>
+						<td><%=oap.getOrders().getOrdersId() %></td>
+						<td><a class="color-black" href="<%=request.getContextPath()%>/product/productOne.jsp?productId=<%=oap.getProduct().getProductId()%>"><img src="/mall-admin/images/<%=oap.getProduct().getProductPic()%>" width="70px" height="70px"></a></td>
+						<td><a class="color-black" href="<%=request.getContextPath()%>/product/productOne.jsp?productId=<%=oap.getProduct().getProductId()%>"><%=oap.getProduct().getProductName() %></a></td>
+						<td><%=oap.getOrders().getOrdersAmount() %></td>
+						<td><%=oap.getOrders().getOrdersPrice() %>원</td>
+						<td><%=oap.getOrders().getOrdersAddr() %></td>
+						<td><%=oap.getOrders().getOrdersState() %></td>
+						<td><%=oap.getOrders().getOrdersDate() %></td>
+						<td><a href="<%=request.getContextPath() %>/orders/modifyOrdersStateAction.jsp?ordersId=<%=oap.getOrders().getOrdersId() %>">주문취소</a></td>
+					</tr>
+				<%
 						}
-					%>
+					}
+				%>
 			</tbody>
 		</table>
 		

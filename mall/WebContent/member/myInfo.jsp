@@ -24,7 +24,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ordersList</title>
+<title>myPage</title>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 <style>
@@ -77,7 +77,7 @@
 								<td><%=m.getMemberDate()%></td>
 							</tr>
 							<tr>
-								<th colspan="2"><button class="btn btn-primary" type="submit">변경사항 저장</button></th>
+								<th colspan="2"><button class="btn btn-outline-danger" type="submit">변경사항 저장</button></th>
 							</tr>
 						</table>
 					</form>

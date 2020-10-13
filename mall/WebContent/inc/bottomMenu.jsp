@@ -1,3 +1,4 @@
+<!-- 하단 메뉴바 -->
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <div style="margin-top: 80px;"></div>
@@ -7,12 +8,11 @@
 <div class="container">
 	<table class="table table-borderless">
 		<tr>
-			<td><h5><a class="color-black" href="">Goodee Shop 소개</a></h5></td>
-			<td><h5><a class="color-black" href="">채용정보</a></h5></td>
-			<td><h5><a class="color-black" href="">이용약관</a></h5></td>
-			<td style="width:40%"><h5><a class="color-black" href="">개인정보 처리방침</a></h5></td>
-			<!-- EBS 보니하니 전화번호같은데...? -->
-			<td class="align-right"><h5>고객센터 <a href="">080-335-0020</a></h5></td>
+			<td><h5><a class="color-black" href="<%=request.getContextPath()%>/construction.jsp">Goodee Shop 소개</a></h5></td>
+			<td><h5><a class="color-black" href="<%=request.getContextPath()%>/construction.jsp">채용정보</a></h5></td>
+			<td><h5><a class="color-black" href="<%=request.getContextPath()%>/construction.jsp">이용약관</a></h5></td>
+			<td style="width:40%"><h5><a class="color-black" href="<%=request.getContextPath()%>/construction.jsp">개인정보 처리방침</a></h5></td>
+			<td class="align-right"><h5>고객센터 <a href="<%=request.getContextPath()%>/construction.jsp">080-335-0020</a></h5></td>
 		</tr>
 		<tr>
 			<td colspan="5">

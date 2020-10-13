@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="dao.*" %>
 
-<!-- 페이지 메인 메뉴 -->
+<!-- 상단 메뉴바 -->
  
 <%
 	// 회원 Dao

@@ -59,10 +59,11 @@
 				</tr>
 				<tr>
 					<th>내용</th>
-					<td style="height:500px;"><%=n.getNoticeContent() %></td>
+					<td style="height:400px;"><%=n.getNoticeContent() %></td>
 				</tr>
 			</tbody>
 		</table>
+		<a class="btn btn-outline-primary" href="<%=request.getContextPath()%>/notice/noticeList.jsp">목록으로</a>
 	</div>
 	
 	<!-- 최하단 -->
