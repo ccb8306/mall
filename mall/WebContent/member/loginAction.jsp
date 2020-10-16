@@ -20,12 +20,6 @@
 	
 	String memberEmail = null;
 	String memberPw = null;
-	
-	// 이메일이나 비밀번호를 입력 안했을 시 
-	if(request.getParameter("memberEmail").equals("") || request.getParameter("memberPw").equals("")){
-		response.sendRedirect(request.getContextPath() + "/member/login.jsp");
-		return;
-	}
 
 	// 정보 저장
 	memberPw = request.getParameter("memberPw");

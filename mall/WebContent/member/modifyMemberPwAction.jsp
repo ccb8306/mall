@@ -33,7 +33,8 @@
 	m1.setMemberPw(beginMemberPw);
 	// 비밀번호 확인
 	MemberDao memberDao = new MemberDao();
-	// 확인 실패(비밀번호가 다를경우)
+	
+	// 비밀번호 변경 실패
 	if(memberDao.selectMemberCk(m1) == null){
 		System.out.println("비밀번호 변경 실패"); // 디버깅
 		response.sendRedirect(request.getContextPath() + "/member/modifyMemberPw.jsp");

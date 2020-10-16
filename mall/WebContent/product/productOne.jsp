@@ -24,6 +24,21 @@
 	.align-right{text-align:right;}
 	.color-black{color:black};
 </style>
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- java script -->
+<script>
+	$(document).ready(function(){ 
+		$("#btn").click(function() {
+			if($("#ordersAddr").val().length < 1){
+				alert("배송지를 입력해 주세요.");
+				return;
+			}
+			$("#productOneForm").submit();
+		});
+	});
+</script>
 </head>
 <body>
 	<!-- 메뉴바 -->
@@ -46,7 +61,7 @@
 	<div class="container form-group">
 		<!-- 상품 기본정보 / 구매 -->
 		<div>
-			<form method="post" action="<%=request.getContextPath()%>/orders/addOrdersAction.jsp">
+			<form id="productOneForm" method="post" action="<%=request.getContextPath()%>/orders/addOrdersAction.jsp">
 				<input type="hidden" name="productId" value="<%=productId %>">
 				<input type="hidden" name="ordersPrice" value="<%=amount * p.getProductPrice() %>">
 				<table class="table">
@@ -96,10 +111,10 @@
 							</td>
 						</tr>
 						<tr>
-							<td><h4>배송지 : <input type="text" class="" name="ordersAddr"></h4></td>
+							<td><h4>배송지 : <input id="ordersAddr" type="text" class="" name="ordersAddr"></h4></td>
 						</tr>
 						<tr>
-							<td><button type="submit" class="btn btn-outline-primary btn-block">구매하기</button></td>
+							<td><button id="btn" type="button" class="btn btn-outline-primary btn-block">구매하기</button></td>
 						</tr>
 					<%
 						// 품절일 경우

@@ -22,6 +22,27 @@
 <head>
 <meta charset="UTF-8">
 <title>login</title>
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- java script -->
+<script>
+	$(document).ready(function(){
+		$("#btn").click(function(){
+			if($("#memberEmail").val().length < 1){
+				alert("이메일을 입력해 주세요.");
+				$("#memberEmail").focus();
+				return;
+			}else if($("#memberPw").val().length < 1){
+				alert("비밀번호를 입력해 주세요.");
+				$("#memberPw").focus();
+				return;
+			}
+			$("#loginForm").submit();
+		});
+	});
+</script>
 </head>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
@@ -35,7 +56,7 @@
 <div style="margin-top: 100px;"></div>
 <!-- 로그인 폼 -->
 <div style="width:430px" class="container form-group">	
-	<form method="post" action="<%=request.getContextPath() %>/member/loginAction.jsp">
+	<form id="loginForm" method="post" action="<%=request.getContextPath() %>/member/loginAction.jsp">
 	
 		<!-- 로고 -->
 		<h2 class="align-center"><a class="color-black" href="<%=request.getContextPath() %>/index.jsp">Goodee Shop</a></h2>
@@ -52,17 +73,17 @@
 					<td style="width:15%" class="align-center" >
 						<i class='fas fa-user-alt' style='font-size:36px; color:gray'></i>
 						 </td>
-					<td><input type="text" name="memberEmail" class="form-control"  placeholder="Email" value="user@naver.com"></td>
+					<td><input id="memberEmail" type="text" name="memberEmail" class="form-control"  placeholder="Email" value="user@naver.com"></td>
 				</tr>
 				<tr>
 					<td style="width:15%" class="align-center" >
 						<i class='fas fa-key' style='font-size:36px; color:gray'></i> 
 					</td>
-					<td><input type="password" name="memberPw" class="form-control"  placeholder="****" value="1234"></td>
+					<td><input id="memberPw" type="password" name="memberPw" class="form-control"  placeholder="****" value="1234"></td>
 				</tr>
 			</tbody>
 		</table>
-		<button class="btn btn-primary btn-block" type="submit">로그인</button>
+		<button class="btn btn-primary btn-block" id="btn" type="button">로그인</button>
 	</form>
 	<a class="align-center page-link bg-muted" href="<%=request.getContextPath() %>/member/signup.jsp">회원가입</a>
 </div>

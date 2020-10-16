@@ -24,13 +24,8 @@
 	// 회원가입 처리
 	String memberEmail = null;
 	String memberPw = null;
+	String memberPw2 = null;
 	String memberName = null;
-	
-	// 정보를 다 입력 안했을 시 
-	if(request.getParameter("memberEmail").equals("")|| request.getParameter("memberPw").equals("")|| request.getParameter("memberName").equals("")){
-		response.sendRedirect(request.getContextPath()+"/member/signup.jsp");
-		return;
-	}
 	
 	// 회원 정보 값 받기
 	memberEmail = request.getParameter("memberEmail");

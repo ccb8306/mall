@@ -34,6 +34,21 @@
 	.ver-middel{vertical-align:midde;}
 	.color-black{color:black};
 </style>
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- java script -->
+<script>
+	$(document).ready(function(){ 
+		$("#btn").click(function() {
+			if($("#memberName").val().length < 1){
+				alert("이름을 입력해 주세요.");
+				return;
+			}
+			$("#myInfoForm").submit();
+		});
+	});
+</script>
 </head>
 <body>
 	<!-- 메뉴바 -->
@@ -57,7 +72,7 @@
 				</td>		
 				<td style="width:750px">
 					<!-- 내용 -->
-					<form method="post" action="<%=request.getContextPath()%>/member/modifyMemberInfoAction.jsp">
+					<form id="myInfoForm" method="post" action="<%=request.getContextPath()%>/member/modifyMemberInfoAction.jsp">
 						<table class="table" style="width:750px">
 							<thead class="thead-light">
 								<tr>
@@ -66,7 +81,7 @@
 							</thead>
 							<tr>
 								<th>이름 : </th>
-								<td style="width:650px"><input name="memberName" class="form-control" type="text" value="<%=m.getMemberName()%>"></td>
+								<td style="width:650px"><input id="memberName" name="memberName" class="form-control" type="text" value="<%=m.getMemberName()%>"></td>
 							</tr>
 							<tr>
 								<th>이메일 : </th>
@@ -77,7 +92,7 @@
 								<td><%=m.getMemberDate()%></td>
 							</tr>
 							<tr>
-								<th colspan="2"><button class="btn btn-outline-danger" type="submit">변경사항 저장</button></th>
+								<th colspan="2"><button id="btn" class="btn btn-outline-danger" type="button">변경사항 저장</button></th>
 							</tr>
 						</table>
 					</form>

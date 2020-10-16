@@ -38,6 +38,28 @@
 	.ver-middel{vertical-align:midde;}
 	.color-black{color:black};
 </style>
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- java script -->
+<script>
+	$(document).ready(function(){ 
+		$("#btn").click(function() {			
+			if($("#beginMemberPw").val().length < 1){
+				alert("현재 비밀번호를 입력해 주세요.");
+				return;
+			}else if($("#afterMemberPw").val().length < 1){
+				alert("변경항 비밀번호를 입력해 주세요.");
+				return;
+			}else if($("#beginMemberPw").val() == $("#afterMemberPw").val()){
+				alert("이전 비밀번호와 동일하게 변경할 수 없습니다.");
+				return;
+			}
+			$("#modifyMemberPwForm").submit();
+		});
+	});
+</script>
 </head>
 <body>
 	<!-- 메뉴바 -->
@@ -60,7 +82,7 @@
 				</td>
 				<td style="width:750px">
 					<!-- 내용 -->
-					<form method="post" action="<%=request.getContextPath()%>/member/modifyMemberPwAction.jsp">
+					<form id="modifyMemberPwForm" method="post" action="<%=request.getContextPath()%>/member/modifyMemberPwAction.jsp">
 						<input type="hidden" name="memberEmail" value="<%=loginMemberEmail%>">
 						<table class="table" style="width:750px">
 							<thead class="thead-light">
@@ -70,14 +92,14 @@
 							</thead>
 							<tr>
 								<th>현재 비밀번호  : </th>
-								<td style="width:550px"><input name="beginMemberPw" class="form-control" type="password"></td>
+								<td style="width:550px"><input id="beginMemberPw" name="beginMemberPw" class="form-control" type="password"></td>
 							</tr>
 							<tr>
 								<th>변경할 비밀번호  : </th>
-								<td style="width:550px"><input name="afterMemberPw" class="form-control" type="password"></td>
+								<td style="width:550px"><input id="afterMemberPw" name="afterMemberPw" class="form-control" type="password"></td>
 							</tr>
 							<tr>
-								<th colspan="2"><button class="btn btn-outline-danger" type="submit">비밀번호 변경</button></th>
+								<th colspan="2"><button id="btn" class="btn btn-outline-danger" type="button">비밀번호 변경</button></th>
 							</tr>
 						</table>
 					</form>
