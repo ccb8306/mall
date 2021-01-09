@@ -6,7 +6,7 @@ import vo.*;
 import java.sql.*;
 
 public class OrdersDao {
-	// ÁÖ¹® Ãß°¡
+	// ï¿½Ö¹ï¿½ ï¿½ß°ï¿½
 	public void insertOrders(Orders orders)throws Exception{
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();	
@@ -18,13 +18,13 @@ public class OrdersDao {
 		stmt.setInt(3, orders.getOrdersPrice());
 		stmt.setString(4, orders.getMemberEmail());
 		stmt.setString(5, orders.getOrdersAddr());
-		stmt.setString(6, "°áÁ¦¿Ï·á");
+		stmt.setString(6, "ê²°ì œì™„ë£Œ");
 		stmt.executeUpdate();
 		
 		conn.close();
 	}
 
-	// È¸¿ø ÀÌ¸ÞÀÏ·Î ÁÖ¹® ¸®½ºÆ® Ãâ·Â
+	// È¸ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½Ï·ï¿½ ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½
 	public ArrayList<OrdersAndProduct> selectOrderListByEmail(String memberEmail, int currentPage, int rowPage) throws Exception {
 		ArrayList<OrdersAndProduct> list = new ArrayList<OrdersAndProduct>();
 		
@@ -64,11 +64,11 @@ public class OrdersDao {
 		return list;
 	}
 	
-	// ÁÖ¹® Ãë¼Ò --> ÁÖ¹® »óÅÂ¸¦ ÁÖ¹®Ãë¼Ò·Î ¹Ù²Þ
+	// ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½ --> ï¿½Ö¹ï¿½ ï¿½ï¿½ï¿½Â¸ï¿½ ï¿½Ö¹ï¿½ï¿½ï¿½Ò·ï¿½ ï¿½Ù²ï¿½
 	public void updateOrdersState(int ordersId)throws Exception {
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();	
-		String sql = "update orders set orders_state='ÁÖ¹®Ãë¼Ò' where orders_id=?";
+		String sql = "update orders set orders_state='ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½' where orders_id=?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, ordersId);
 		stmt.executeUpdate();
@@ -76,7 +76,7 @@ public class OrdersDao {
 		conn.close();
 	}
 	
-	// ÁÖ¹®¸®½ºÆ® ÃÖ´ë ÆäÀÌÁö ±¸ÇÏ±â
+	// ï¿½Ö¹ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï±ï¿½
 	public int getCategoryEndPage(int rowPage, String memberEmail) throws Exception {
 		int endPage = 1;
 		DBUtil dbUtil = new DBUtil();
