@@ -68,7 +68,7 @@ public class OrdersDao {
 	public void updateOrdersState(int ordersId)throws Exception {
 		DBUtil dbUtil = new DBUtil();
 		Connection conn = dbUtil.getConnection();	
-		String sql = "update orders set orders_state='�ֹ����' where orders_id=?";
+		String sql = "update orders set orders_state='주문취소' where orders_id=?";
 		PreparedStatement stmt = conn.prepareStatement(sql);
 		stmt.setInt(1, ordersId);
 		stmt.executeUpdate();
